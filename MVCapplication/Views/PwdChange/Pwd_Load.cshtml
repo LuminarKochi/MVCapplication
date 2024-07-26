@@ -1,0 +1,39 @@
+﻿@model MVCapplication.Models.UserPwdChangeClass
+@{
+    ViewBag.Title = "Pwd_Load";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Change Password</h2>
+<div>
+    @using (Html.BeginForm("Pwd_click", "PwdChange", FormMethod.Post))
+    {
+        <div><label>Current Password:</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.oldpassword)
+            @Html.ValidationMessageFor(m => m.oldpassword)
+        </div>
+
+        <div><label>New Password:</label></div>
+        <div>
+            @Html.PasswordFor(m => m.newpassword)
+            @Html.ValidationMessageFor(m => m.newpassword)
+        </div>
+
+        <div><label>Confirm Password:</label></div>
+        <div>
+            @Html.PasswordFor(m => m.confirmpassword)
+            @Html.ValidationMessageFor(m => m.confirmpassword)
+        </div>
+
+        <div>
+            <input type="submit" value="Change Password"/>
+            @Html.DisplayFor(m=>m.msg)
+        </div>
+
+        <div>
+            @Html.ActionLink("Back to Home","Home","LoginDB")
+        </div>
+    }
+</div>
+

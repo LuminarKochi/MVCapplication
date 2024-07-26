@@ -1,0 +1,46 @@
+﻿@model MVCapplication.Models.UserProfileClass
+@{
+    ViewBag.Title = "Profile_Load";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User Profile</h2>
+<div>
+    @using (Html.BeginForm("Profile_Update", "ProfileViewEdit", FormMethod.Post))
+            {
+               <div><label>Name:</label></div> 
+               <div>
+                   @Html.TextBoxFor(m=>m.name)
+               </div>
+
+               <div><label>Age:</label></div>
+               <div>
+                   @Html.TextBoxFor(m=>m.age)
+               </div>
+
+               <div><label>Address:</label></div>
+               <div>
+                   @Html.TextAreaFor(m=>m.address)
+               </div>
+
+               <div><label>Email:</label></div>
+               <dib>
+                   @Html.TextBoxFor(m=>m.email)
+               </dib>
+
+               <div><label>Photo</label></div>
+               <div>
+                   <img src="@Url.Content(Model.photo)" alt="haai" height="300" width="250"/>
+               </div>
+
+               <div>
+                   <input type="submit" value="Update"/>
+                   @Html.DisplayFor(m=>m.msg)
+               </div>
+
+               <div>
+                   @Html.ActionLink("Back to Home","Home","LoginDB")
+               </div>
+            }
+</div>
+

@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MVCmainModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="District_tb">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State_Id" Type="int" Nullable="false" />
+          <Property Name="DName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inserttab">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="DisId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="registration_tb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Photo" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Qualification" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State_tb">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Function Name="sp_districts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="na" Type="varchar" Mode="In" />
+          <Parameter Name="ag" Type="int" Mode="In" />
+          <Parameter Name="addr" Type="varchar" Mode="In" />
+          <Parameter Name="em" Type="varchar" Mode="In" />
+          <Parameter Name="ph" Type="varchar" Mode="In" />
+          <Parameter Name="gen" Type="varchar" Mode="In" />
+          <Parameter Name="sta" Type="varchar" Mode="In" />
+          <Parameter Name="qual" Type="varchar" Mode="In" />
+          <Parameter Name="una" Type="varchar" Mode="In" />
+          <Parameter Name="psw" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_inserttab" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Sid" Type="int" Mode="In" />
+          <Parameter Name="Did" Type="int" Mode="In" />
+          <Parameter Name="na" Type="varchar" Mode="In" />
+          <Parameter Name="ag" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="una" Type="varchar" Mode="In" />
+          <Parameter Name="pwd" Type="varchar" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_profile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_profile_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uname" Type="varchar" Mode="In" />
+          <Parameter Name="ag" Type="int" Mode="In" />
+          <Parameter Name="addr" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Pwdchange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uname" Type="varchar" Mode="In" />
+          <Parameter Name="oldpwd" Type="varchar" Mode="In" />
+          <Parameter Name="newpwd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_reg_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="na" Type="varchar" Mode="In" />
+          <Parameter Name="ag" Type="int" Mode="In" />
+          <Parameter Name="addr" Type="varchar" Mode="In" />
+          <Parameter Name="em" Type="varchar" Mode="In" />
+          <Parameter Name="ph" Type="varchar" Mode="In" />
+          <Parameter Name="gen" Type="varchar" Mode="In" />
+          <Parameter Name="state" Type="varchar" Mode="In" />
+          <Parameter Name="qual" Type="varchar" Mode="In" />
+          <Parameter Name="una" Type="varchar" Mode="In" />
+          <Parameter Name="pw" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_state" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="MVCmainModelStoreContainer">
+          <EntitySet Name="District_tb" EntityType="Self.District_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inserttab" EntityType="Self.Inserttab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="registration_tb" EntityType="Self.registration_tb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State_tb" EntityType="Self.State_tb" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVCmainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="registration_tb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qualification" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MVCmainEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="registration_tb" EntityType="Self.registration_tb" />
+          <FunctionImport Name="sp_reg_insert">
+            <Parameter Name="na" Mode="In" Type="String" />
+            <Parameter Name="ag" Mode="In" Type="Int32" />
+            <Parameter Name="addr" Mode="In" Type="String" />
+            <Parameter Name="em" Mode="In" Type="String" />
+            <Parameter Name="ph" Mode="In" Type="String" />
+            <Parameter Name="gen" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+            <Parameter Name="qual" Mode="In" Type="String" />
+            <Parameter Name="una" Mode="In" Type="String" />
+            <Parameter Name="pw" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insert">
+            <Parameter Name="na" Mode="In" Type="String" />
+            <Parameter Name="ag" Mode="In" Type="Int32" />
+            <Parameter Name="addr" Mode="In" Type="String" />
+            <Parameter Name="em" Mode="In" Type="String" />
+            <Parameter Name="ph" Mode="In" Type="String" />
+            <Parameter Name="gen" Mode="In" Type="String" />
+            <Parameter Name="sta" Mode="In" Type="String" />
+            <Parameter Name="qual" Mode="In" Type="String" />
+            <Parameter Name="una" Mode="In" Type="String" />
+            <Parameter Name="psw" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_login">
+            <Parameter Name="una" Mode="In" Type="String" />
+            <Parameter Name="pwd" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_profile" ReturnType="Collection(MVCmainModel.sp_profile_Result)">
+          <Parameter Name="uname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_profile_Update">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="ag" Mode="In" Type="Int32" />
+            <Parameter Name="addr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Pwdchange">
+            <Parameter Name="uname" Mode="In" Type="String" />
+            <Parameter Name="oldpwd" Mode="In" Type="String" />
+            <Parameter Name="newpwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="District_tb" EntityType="MVCmainModel.District_tb" />
+          <EntitySet Name="State_tb" EntityType="MVCmainModel.State_tb" />
+          <FunctionImport Name="sp_districts" ReturnType="Collection(MVCmainModel.sp_districts_Result)">
+          <Parameter Name="stid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SelectAll" ReturnType="Collection(MVCmainModel.sp_SelectAll_Result)" />
+          <FunctionImport Name="sp_state" ReturnType="Collection(MVCmainModel.sp_state_Result)" />
+          <EntitySet Name="Inserttabs" EntityType="MVCmainModel.Inserttab" />
+          <FunctionImport Name="sp_inserttab">
+            <Parameter Name="Sid" Mode="In" Type="Int32" />
+            <Parameter Name="Did" Mode="In" Type="Int32" />
+            <Parameter Name="na" Mode="In" Type="String" />
+            <Parameter Name="ag" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_profile_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Photo" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Qualification" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="District_tb">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State_Id" Type="Int32" Nullable="false" />
+          <Property Name="DName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="State_tb">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="sp_districts_Result">
+          <Property Type="Int32" Name="Did" Nullable="false" />
+          <Property Type="Int32" Name="State_Id" Nullable="false" />
+          <Property Type="String" Name="DName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_SelectAll_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Photo" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Qualification" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_state_Result">
+          <Property Type="Int32" Name="StateId" Nullable="false" />
+          <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Inserttab">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="DisId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVCmainModelStoreContainer" CdmEntityContainer="MVCmainEntities">
+          <EntitySetMapping Name="registration_tb">
+            <EntityTypeMapping TypeName="MVCmainModel.registration_tb">
+              <MappingFragment StoreEntitySet="registration_tb">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_reg_insert" FunctionName="MVCmainModel.Store.sp_reg_insert" />
+          <FunctionImportMapping FunctionImportName="sp_insert" FunctionName="MVCmainModel.Store.sp_insert" />
+          <FunctionImportMapping FunctionImportName="sp_login" FunctionName="MVCmainModel.Store.sp_login" />
+          <FunctionImportMapping FunctionImportName="sp_profile" FunctionName="MVCmainModel.Store.sp_profile">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCmainModel.sp_profile_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_profile_Update" FunctionName="MVCmainModel.Store.sp_profile_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Pwdchange" FunctionName="MVCmainModel.Store.sp_Pwdchange" />
+          <EntitySetMapping Name="District_tb">
+            <EntityTypeMapping TypeName="MVCmainModel.District_tb">
+              <MappingFragment StoreEntitySet="District_tb">
+                <ScalarProperty Name="DName" ColumnName="DName" />
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+                <ScalarProperty Name="Did" ColumnName="Did" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="State_tb">
+            <EntityTypeMapping TypeName="MVCmainModel.State_tb">
+              <MappingFragment StoreEntitySet="State_tb">
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_districts" FunctionName="MVCmainModel.Store.sp_districts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCmainModel.sp_districts_Result">
+                <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+                <ScalarProperty Name="DName" ColumnName="DName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SelectAll" FunctionName="MVCmainModel.Store.sp_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCmainModel.sp_SelectAll_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_state" FunctionName="MVCmainModel.Store.sp_state">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCmainModel.sp_state_Result">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Inserttabs">
+            <EntityTypeMapping TypeName="MVCmainModel.Inserttab">
+              <MappingFragment StoreEntitySet="Inserttab">
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DisId" ColumnName="DisId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_inserttab" FunctionName="MVCmainModel.Store.sp_inserttab" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
