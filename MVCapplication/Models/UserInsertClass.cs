@@ -38,6 +38,7 @@ namespace MVCapplication.Models
         public string pwd { get; set; }
         [Compare("pwd", ErrorMessage = "Password and confirm password does not match")]
         public string cpwd { get; set; }
+        //
         public string msg { get; set; }
 
     }
